@@ -27,8 +27,8 @@ public class MovieController {
 
     @GetMapping("/movies/{genre}")
     ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable String genre, HttpServletResponse response) {
-        response.addHeader("port", String.valueOf(serverPort));
-        System.out.println("Puerto utilizado: " + response.getHeaders("port"));
+        response.addHeader("port-movie", String.valueOf(serverPort));
+        System.out.println("Puerto utilizado: " + response.getHeaders("port-movie"));
         return ResponseEntity.ok().body(movieService.findByGenre(genre));
     }
 

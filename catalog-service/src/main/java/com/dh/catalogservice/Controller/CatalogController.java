@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -17,9 +18,15 @@ public class CatalogController {
         this.iMovieClient = iMovieClient;
     }
 
+    @Value("${server.port}")
+    private int serverPort;
+
     @GetMapping("/catalog/{genre}")
-    public ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable  String genre){
-        return ResponseEntity.ok( iMovieClient.getMovieByGenre(genre));
+    public ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable  String genre,  HttpServletResponse response){
+        response.addHeader("port-catalog", String.valueOf(serverPort));
+        System.out.println("Puerto utilizado: " + response.getHeaders("port-catalog"));
+        System.out.println("Puerto movie: "+ iMovieClient.getMovieByGenre(genre).getHeaders().get("port-movie"));
+        return  iMovieClient.getMovieByGenre(genre);
     }
 
     @PostMapping("/catalog/save")
