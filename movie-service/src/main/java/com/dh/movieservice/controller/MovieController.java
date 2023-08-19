@@ -15,11 +15,8 @@ import java.util.List;
  */
 
 @RestController
-
 public class MovieController {
-
     private final MovieService movieService;
-
 
     @Value("${server.port}")
     private int serverPort;
