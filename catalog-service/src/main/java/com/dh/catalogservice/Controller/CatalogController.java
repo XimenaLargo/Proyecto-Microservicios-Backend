@@ -2,6 +2,7 @@ package com.dh.catalogservice.Controller;
 
 import com.dh.catalogservice.Feign.IMovieClient;
 import com.dh.catalogservice.model.Movie;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ public class CatalogController {
     public CatalogController(IMovieClient iMovieClient) {
         this.iMovieClient = iMovieClient;
     }
+
 
     @GetMapping("/catalog/{genre}")
     public ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable  String genre){
