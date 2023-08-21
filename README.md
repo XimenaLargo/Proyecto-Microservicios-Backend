@@ -16,3 +16,6 @@ Examen parcial de la materia Especialización Backend I
 
 - Confirmación de respuesta del load balancer random
 <img src="https://github.com/XimenaLargo96/XimenaLargo96/blob/main/publicImages/loadbalancer.PNG" />
+
+- Comprobación de funcionamiento del gateway
+<img src="https://raw.githubusercontent.com/XimenaLargo96/XimenaLargo96/main/publicImages/gateway.PNG" />
