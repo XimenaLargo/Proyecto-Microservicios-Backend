@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @SpringBootApplication
+
 public class SerieServiceApplication {
 
     public static void main(String[] args) {
