@@ -1,9 +1,8 @@
 package com.dh.catalogservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.io.Serializable;
 
@@ -12,13 +11,10 @@ import java.io.Serializable;
  */
 
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class Movie implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Document
+@RequiredArgsConstructor
+public class Movie {
+    @MongoId
     private Long id;
 
     private String name;
