@@ -1,11 +1,9 @@
 package com.dh.catalogservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +12,11 @@ import java.util.List;
  * @author vaninagodoy
  */
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
+@Data
+@Document
+@RequiredArgsConstructor
 public class Serie {
+    @MongoId
     private String id;
     private String name;
     private String genre;

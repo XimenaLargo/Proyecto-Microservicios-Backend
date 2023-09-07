@@ -3,3 +3,11 @@ spring:
     name: catalog-service
   config:
     import: optional:configserver:http://localhost:8888
+
+  mongodb:
+    embedded:
+      version: 4.0.2
+    data:
+      mongodb:
+        database: test
+        port: 27018
