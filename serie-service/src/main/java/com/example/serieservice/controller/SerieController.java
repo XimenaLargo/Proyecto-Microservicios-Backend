@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/api/v1/series")
+@RequestMapping("/series")
 public class SerieController {
 
     private final SerieService serieService;
