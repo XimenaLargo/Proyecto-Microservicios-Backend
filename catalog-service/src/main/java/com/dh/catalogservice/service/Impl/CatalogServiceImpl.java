@@ -1,8 +1,9 @@
 package com.dh.catalogservice.service.Impl;
 
 import com.dh.catalogservice.Feign.IMovieClient;
-import com.dh.catalogservice.model.Genre;
+import com.dh.catalogservice.Feign.ISerieClient;
 import com.dh.catalogservice.model.Movie;
+import com.dh.catalogservice.model.Serie;
 import com.dh.catalogservice.service.CatalogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,10 +11,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CatalogServiceImpl implements CatalogService {
 
     private final IMovieClient iMovieClient;
+
+    private final ISerieClient iSerieClient;
+
+    public CatalogServiceImpl(IMovieClient iMovieClient, ISerieClient iSerieClient) {
+        this.iMovieClient = iMovieClient;
+        this.iSerieClient = iSerieClient;
+    }
 
     @Override
     public List<Movie> getMoviesByGenre(String genre) {
@@ -26,7 +33,13 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
-    public Genre findByGenre(String genre) {
-        return null;
+    public String create(Serie serie) {
+        iSerieClient.create(serie);
+        return serie.getId();
     }
+    @Override
+    public List<Serie> getSeriesBygGenre(String genre) {
+        return iSerieClient.getSeriesBygGenre(genre);
+    }
+
 }

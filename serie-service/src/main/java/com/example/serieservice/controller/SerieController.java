@@ -12,7 +12,6 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/series")
 public class SerieController {
 
     private final SerieService serieService;
@@ -26,12 +25,12 @@ public class SerieController {
         return serieService.getAll();
     }
 
-    @GetMapping("/{genre}")
+    @GetMapping("/series/{genre}")
     public List<Serie> getSerieByGenre(@PathVariable String genre) {
         return serieService.getSeriesBygGenre(genre);
     }
 
-    @PostMapping
+    @PostMapping("/series/save")
     @ResponseStatus(HttpStatus.CREATED)
     public String create(@RequestBody Serie serie) {
         serieService.create(serie);

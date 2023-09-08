@@ -12,11 +12,11 @@ import java.util.List;
  * @author vaninagodoy
  */
 
+@Builder
 @Data
-@Document
-@RequiredArgsConstructor
+@Document(collection = "Series")
 public class Serie {
-    @MongoId
+    @Id
     private String id;
     private String name;
     private String genre;
@@ -27,7 +27,6 @@ public class Serie {
     @Setter
     @Getter
     public static class Season {
-
         private Integer seasonNumber;
         private List<Chapter> chapters = new ArrayList<>();
 
@@ -36,11 +35,9 @@ public class Serie {
         @Setter
         @Getter
         public static class Chapter {
-
             private String name;
             private Integer number;
             private String urlStream;
-
         }
     }
 }

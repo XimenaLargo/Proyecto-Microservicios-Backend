@@ -1,7 +1,7 @@
 package com.dh.catalogservice.Controller;
 
-import com.dh.catalogservice.Feign.IMovieClient;
 import com.dh.catalogservice.model.Movie;
+import com.dh.catalogservice.model.Serie;
 import com.dh.catalogservice.service.CatalogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +19,7 @@ public class CatalogController {
     @Value("${server.port}")
     private int serverPort;
 
-    @GetMapping("/catalog/{genre}")
+    @GetMapping("/catalog/movies/{genre}")
     public ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable  String genre,  HttpServletResponse response){
         response.addHeader("port-catalog", String.valueOf(serverPort));
         System.out.println("Puerto utilizado: " + response.getHeaders("port-catalog"));
@@ -31,4 +31,13 @@ public class CatalogController {
         return ResponseEntity.ok(catalogService.saveMovie(movie));
     }
 
+    @GetMapping("/catalog/series/{genre}")
+    public ResponseEntity<List<Serie>> getSeriesByGenre(@PathVariable String genre){
+        return ResponseEntity.ok(catalogService.getSeriesBygGenre(genre));
+    }
+
+    @PostMapping("/catalog/series/save")
+    public ResponseEntity<String> createSerie(@RequestBody Serie serie){
+        return ResponseEntity.ok(catalogService.create(serie));
+    }
 }
