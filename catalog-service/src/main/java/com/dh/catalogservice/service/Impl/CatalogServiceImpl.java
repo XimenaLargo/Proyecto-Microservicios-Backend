@@ -2,6 +2,7 @@ package com.dh.catalogservice.service.Impl;
 
 import com.dh.catalogservice.Feign.IMovieClient;
 import com.dh.catalogservice.Feign.ISerieClient;
+import com.dh.catalogservice.model.Genre;
 import com.dh.catalogservice.model.Movie;
 import com.dh.catalogservice.model.Serie;
 import com.dh.catalogservice.service.CatalogService;
@@ -22,6 +23,11 @@ public class CatalogServiceImpl implements CatalogService {
     }
 
     @Override
+    public Genre getAllByGenre(String genre) {
+        return new Genre(iMovieClient.getMovieByGenre(genre), iSerieClient.getSeriesBygGenre(genre));
+    }
+
+   /* @Override
     public List<Movie> getMoviesByGenre(String genre) {
         return   iMovieClient.getMovieByGenre(genre);
     }
@@ -39,6 +45,8 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public List<Serie> getSeriesBygGenre(String genre) {
         return iSerieClient.getSeriesBygGenre(genre);
-    }
+    }*/
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.dh.catalogservice.Controller;
 
+import com.dh.catalogservice.model.Genre;
 import com.dh.catalogservice.model.Movie;
 import com.dh.catalogservice.model.Serie;
 import com.dh.catalogservice.queue.MovieSender;
@@ -16,11 +17,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class CatalogController {
+
     private final CatalogService catalogService;
     private final SerieSender serieSender;
     private final MovieSender movieSender;
 
-    @Value("${server.port}")
+    /*@Value("${server.port}")
     private int serverPort;
 
     @GetMapping("/catalog/movies/{genre}")
@@ -30,21 +32,21 @@ public class CatalogController {
         return  ResponseEntity.ok(catalogService.getMoviesByGenre(genre));
     }
 
-    /*@PostMapping("/catalog/save")
+    @PostMapping("/catalog/save")
     public ResponseEntity<Movie> saveMovie(@RequestBody  Movie movie){
         return ResponseEntity.ok(catalogService.saveMovie(movie));
     }*/
 
-    @PostMapping("/catalog/movies/save")
+    /*@PostMapping("/catalog/movies/save")
     public ResponseEntity<Movie> saveMovie(@RequestBody  Movie movie){
         movieSender.send(movie);
         return ResponseEntity.noContent().build();
-    }
+    }*/
 
-    @GetMapping("/catalog/series/{genre}")
+  /*  @GetMapping("/catalog/series/{genre}")
     public ResponseEntity<List<Serie>> getSeriesByGenre(@PathVariable String genre){
         return ResponseEntity.ok(catalogService.getSeriesBygGenre(genre));
-    }
+    }*/
 
     /*@PostMapping("/catalog/series/save")
     public ResponseEntity<String> createSerie(@RequestBody Serie serie){
@@ -52,9 +54,14 @@ public class CatalogController {
     }*/
 
 
-    @PostMapping("/catalog/series/save")
+   /* @PostMapping("/catalog/series/save")
     public ResponseEntity<String> createSerie(@RequestBody Serie serie){
         serieSender.send(serie);
         return ResponseEntity.noContent().build();
+    }*/
+    @GetMapping("/catalog/{genre}")
+    public ResponseEntity<Genre> getAllByGenre(@PathVariable String genre){
+        return ResponseEntity.ok(catalogService.getAllByGenre(genre));
     }
+
 }

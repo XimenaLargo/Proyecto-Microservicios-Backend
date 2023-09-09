@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Genre {
-    private List<Movie> movie;
-    private  List<Serie> serie;
+    private List<Movie> movies;
+    private  List<Serie> series;
 
 }

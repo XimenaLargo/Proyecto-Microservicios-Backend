@@ -5,5 +5,5 @@ spring:
     import: optional:configserver:http://localhost:8888
 
 queue:
-  movie:
+  serie:
     name: SerieQueue
