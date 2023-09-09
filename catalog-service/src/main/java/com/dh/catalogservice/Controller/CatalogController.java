@@ -3,6 +3,7 @@ package com.dh.catalogservice.Controller;
 import com.dh.catalogservice.model.Movie;
 import com.dh.catalogservice.model.Serie;
 import com.dh.catalogservice.queue.MovieSender;
+import com.dh.catalogservice.queue.SerieSender;
 import com.dh.catalogservice.service.CatalogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CatalogController {
     private final CatalogService catalogService;
-
+    private final SerieSender serieSender;
     private final MovieSender movieSender;
 
     @Value("${server.port}")
@@ -34,7 +35,7 @@ public class CatalogController {
         return ResponseEntity.ok(catalogService.saveMovie(movie));
     }*/
 
-    @PostMapping("/catalog/save")
+    @PostMapping("/catalog/movies/save")
     public ResponseEntity<Movie> saveMovie(@RequestBody  Movie movie){
         movieSender.send(movie);
         return ResponseEntity.noContent().build();
@@ -45,8 +46,15 @@ public class CatalogController {
         return ResponseEntity.ok(catalogService.getSeriesBygGenre(genre));
     }
 
-    @PostMapping("/catalog/series/save")
+    /*@PostMapping("/catalog/series/save")
     public ResponseEntity<String> createSerie(@RequestBody Serie serie){
         return ResponseEntity.ok(catalogService.create(serie));
+    }*/
+
+
+    @PostMapping("/catalog/series/save")
+    public ResponseEntity<String> createSerie(@RequestBody Serie serie){
+        serieSender.send(serie);
+        return ResponseEntity.noContent().build();
     }
 }

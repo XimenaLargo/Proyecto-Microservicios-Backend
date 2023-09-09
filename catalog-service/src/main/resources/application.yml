@@ -21,3 +21,6 @@ exchange:
 queue:
   movie:
     name: MovieQueue
+
+  serie:
+    name: SerieQueue
