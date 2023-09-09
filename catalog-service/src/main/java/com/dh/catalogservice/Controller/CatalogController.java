@@ -2,6 +2,7 @@ package com.dh.catalogservice.Controller;
 
 import com.dh.catalogservice.model.Movie;
 import com.dh.catalogservice.model.Serie;
+import com.dh.catalogservice.queue.MovieSender;
 import com.dh.catalogservice.service.CatalogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +17,8 @@ import java.util.List;
 public class CatalogController {
     private final CatalogService catalogService;
 
+    private final MovieSender movieSender;
+
     @Value("${server.port}")
     private int serverPort;
 
@@ -26,9 +29,15 @@ public class CatalogController {
         return  ResponseEntity.ok(catalogService.getMoviesByGenre(genre));
     }
 
-    @PostMapping("/catalog/save")
+    /*@PostMapping("/catalog/save")
     public ResponseEntity<Movie> saveMovie(@RequestBody  Movie movie){
         return ResponseEntity.ok(catalogService.saveMovie(movie));
+    }*/
+
+    @PostMapping("/catalog/save")
+    public ResponseEntity<Movie> saveMovie(@RequestBody  Movie movie){
+        movieSender.send(movie);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/catalog/series/{genre}")
