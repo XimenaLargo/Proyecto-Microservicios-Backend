@@ -1,7 +1,7 @@
 package com.dh.catalogservice.queue;
 
-import com.dh.catalogservice.Feign.ISerieClient;
 import com.dh.catalogservice.model.Serie;
+import com.dh.catalogservice.repository.SerieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class SerieListener {
 
-    private final ISerieClient iSerieClient;
+    private final SerieRepository serieRepository;
 
     @RabbitListener(queues = {"${queue.serie.name}"})
     public void receive(@Payload Serie serie) {
@@ -20,6 +20,6 @@ public class SerieListener {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        iSerieClient.create(serie);
+        serieRepository.save(serie);
     }
     }

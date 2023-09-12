@@ -23,13 +23,8 @@ public class SerieController {
 
     private final SerieSender serieSender;
 
-    @GetMapping
-    public List<Serie> getAll() {
-        return serieService.getAll();
-    }
 
     @GetMapping("/series/{genre}")
-
     public List<Serie> getSerieByGenre(@PathVariable String genre) {
         return serieService.getSeriesBygGenre(genre);
     }
@@ -37,6 +32,6 @@ public class SerieController {
     @PostMapping("/series/save")
     public ResponseEntity<String> createSerie(@RequestBody Serie serie){
         serieSender.send(serie);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(serieService.create(serie));
     }
 }

@@ -3,22 +3,17 @@ package com.dh.catalogservice.Controller;
 import com.dh.catalogservice.model.Genre;
 import com.dh.catalogservice.model.Movie;
 import com.dh.catalogservice.model.Serie;
-import com.dh.catalogservice.queue.MovieListener;
-import com.dh.catalogservice.queue.SerieListener;
 import com.dh.catalogservice.service.CatalogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-
 @RestController
 @RequiredArgsConstructor
 public class CatalogController {
 
     private final CatalogService catalogService;
-    private final SerieListener serieListener;
 
     @Value("${server.port}")
     private int serverPort;
@@ -32,7 +27,7 @@ public class CatalogController {
 
     @PostMapping("/catalog/series/save")
     public ResponseEntity<String> createSerie(@RequestBody Serie serie){
-        serieListener.receive(serie);
+       catalogService.saveSerie(serie);
         return ResponseEntity.noContent().build();
     }
 
