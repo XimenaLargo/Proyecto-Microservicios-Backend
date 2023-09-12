@@ -1,10 +1,9 @@
 package com.dh.movieservice.controller;
 
 import com.dh.movieservice.model.Movie;
-import com.dh.movieservice.queue.MovieListener;
+import com.dh.movieservice.queue.MovieSender;
 import com.dh.movieservice.service.impl.MovieService;
 import lombok.RequiredArgsConstructor;
-import org.apache.http.HttpServerConnection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +21,7 @@ import java.util.List;
 public class MovieController {
     private final MovieService movieService;
 
-    private final MovieListener movieListener;
+    private final MovieSender movieSender;
 
     @Value("${server.port}")
     private int serverPort;
@@ -34,14 +33,9 @@ public class MovieController {
         return ResponseEntity.ok().body(movieService.findByGenre(genre));
     }
 
-   /* @PostMapping("/movies/save")
-    ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
-        return ResponseEntity.ok().body(movieService.save(movie));
-    }*/
-
     @PostMapping("/movies/save")
-    ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
-        movieListener.receive(movie);
+    public ResponseEntity<Movie> saveMovie(@RequestBody  Movie movie){
+        movieSender.send(movie);
         return ResponseEntity.noContent().build();
     }
 }

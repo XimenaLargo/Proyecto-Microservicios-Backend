@@ -1,7 +1,7 @@
-package com.dh.movieservice.queue;
+package com.dh.catalogservice.queue;
 
-import com.dh.movieservice.model.Movie;
-import com.dh.movieservice.service.impl.MovieService;
+import com.dh.catalogservice.Feign.IMovieClient;
+import com.dh.catalogservice.model.Movie;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class MovieListener {
 
-    private final MovieService movieService;
+    private final IMovieClient iMovieClient;
 
     @RabbitListener(queues = {"${queue.movie.name}"})
     public void receive(@Payload Movie movie) {
@@ -20,7 +20,6 @@ public class MovieListener {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        movieService.save(movie);
+        iMovieClient.saveMovie(movie);
     }
-
-}
+    }

@@ -14,6 +14,8 @@ import java.util.List;
 
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "Series")
 public class Serie {
     @Id

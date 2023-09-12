@@ -8,12 +8,6 @@ import java.util.List;
 
 public interface CatalogService {
 
-   /* public List<Movie> getMoviesByGenre(String genre);
-
-    public Movie saveMovie(Movie movie);
-    public String create (Serie serie);
-
-    public List<Serie> getSeriesBygGenre(String genre);*/
 
 public Genre getAllByGenre (String genre);
 
