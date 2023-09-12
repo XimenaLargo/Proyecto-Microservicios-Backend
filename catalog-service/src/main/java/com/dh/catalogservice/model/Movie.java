@@ -17,7 +17,7 @@ import java.io.Serializable;
 @RequiredArgsConstructor
 public class Movie {
     @Id
-    private Long id;
+    private String id;
 
     private String name;
 

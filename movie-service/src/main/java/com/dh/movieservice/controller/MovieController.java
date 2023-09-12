@@ -36,6 +36,6 @@ public class MovieController {
     @PostMapping("/movies/save")
     public ResponseEntity<Movie> saveMovie(@RequestBody  Movie movie){
         movieSender.send(movie);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(movieService.save(movie));
     }
 }

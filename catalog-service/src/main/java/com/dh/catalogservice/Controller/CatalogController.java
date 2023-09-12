@@ -18,9 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 public class CatalogController {
 
     private final CatalogService catalogService;
-
-    private final MovieListener movieListener;
-
     private final SerieListener serieListener;
 
     @Value("${server.port}")
@@ -29,7 +26,7 @@ public class CatalogController {
 
     @PostMapping("/catalog/movies/save")
     ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
-        movieListener.receive(movie);
+        catalogService.saveMovie(movie);
         return ResponseEntity.noContent().build();
     }
 
