@@ -7,6 +7,7 @@ import com.dh.movieservice.repository.MovieRepository;
 import com.dh.movieservice.service.IMovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,9 +25,11 @@ public class MovieService implements IMovieService {
 
 
     @Override
-    public List<Movie> findByGenre(String genre) {
+    public List<Movie> findByGenre(String genre, Boolean throwError) throws RuntimeException{
+        if(throwError) throw new RuntimeException();
         return movieRepository.findByGenre(genre);
     }
+
 
     @Override
     public Movie save(Movie movie) {

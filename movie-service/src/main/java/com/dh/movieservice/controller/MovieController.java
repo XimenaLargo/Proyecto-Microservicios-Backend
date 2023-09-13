@@ -27,10 +27,10 @@ public class MovieController {
     private int serverPort;
 
    @GetMapping("/movies/{genre}")
-    ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable String genre, HttpServletResponse response) {
+    public ResponseEntity<List<Movie>> getMovieByGenre(@PathVariable String genre, HttpServletResponse response, @RequestParam(defaultValue = "false") Boolean throwError) {
         response.addHeader("port-movie", String.valueOf(serverPort));
         System.out.println("Puerto utilizado: " + response.getHeaders("port-movie"));
-        return ResponseEntity.ok().body(movieService.findByGenre(genre));
+        return ResponseEntity.ok().body(movieService.findByGenre(genre, throwError));
     }
 
     @PostMapping("/movies/save")
