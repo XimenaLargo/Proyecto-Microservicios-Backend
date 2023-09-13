@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: serie-service
+  config:
+    import: optional:configserver:http://localhost:8888
+queue:
+  serie:
+    name: SerieQueue

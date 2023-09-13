@@ -3,3 +3,6 @@ spring:
     name: movie-service
   config:
     import: optional:configserver:http://localhost:8888
+queue:
+  movie:
+    name: MovieQueue
