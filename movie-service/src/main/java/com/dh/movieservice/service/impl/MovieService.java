@@ -21,15 +21,12 @@ public class MovieService implements IMovieService {
 
     private final MovieRepository movieRepository;
 
-    private final MovieSender movieSender;
-
 
     @Override
     public List<Movie> findByGenre(String genre, Boolean throwError) throws RuntimeException{
-        if(throwError) throw new RuntimeException();
+        if (throwError) throw new RuntimeException();
         return movieRepository.findByGenre(genre);
     }
-
 
     @Override
     public Movie save(Movie movie) {

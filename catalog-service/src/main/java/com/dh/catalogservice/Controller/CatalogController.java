@@ -32,8 +32,7 @@ public class CatalogController {
     }
 
     @GetMapping("/catalog/{genre}")
-    public ResponseEntity<Genre> getAllByGenre(@PathVariable String genre, @RequestParam(defaultValue =
-            "false") Boolean throwError ){
+    public ResponseEntity<Genre> getAllByGenre(@PathVariable String genre){
         return ResponseEntity.ok(catalogService.getAllByGenre(genre));
     }
 
