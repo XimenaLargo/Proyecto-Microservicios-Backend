@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IMovieService {
 
-    public List<Movie> findByGenre(String genre, Boolean throwError);
+    public List<Movie> findByGenre(String genre);
     public Movie save(Movie movie);
 
 }

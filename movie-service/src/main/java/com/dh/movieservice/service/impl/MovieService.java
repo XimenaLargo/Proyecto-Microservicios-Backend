@@ -23,8 +23,7 @@ public class MovieService implements IMovieService {
 
 
     @Override
-    public List<Movie> findByGenre(String genre, Boolean throwError) throws RuntimeException{
-        if (throwError) throw new RuntimeException();
+    public List<Movie> findByGenre(String genre) throws RuntimeException{
         return movieRepository.findByGenre(genre);
     }
 

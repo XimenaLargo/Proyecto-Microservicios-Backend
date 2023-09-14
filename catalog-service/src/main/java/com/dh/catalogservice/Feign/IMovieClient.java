@@ -13,7 +13,7 @@ import java.util.List;
 public interface IMovieClient {
 
     @GetMapping("/movies/{genre}")
-    public List<Movie> findByGenre(@PathVariable  String genre, @RequestParam (defaultValue = "false") Boolean throwError) ;
+    public List<Movie> findByGenre(@PathVariable  String genre) ;
 
     @PostMapping("movies/save")
     public Movie saveMovie(@RequestBody  Movie movie);
