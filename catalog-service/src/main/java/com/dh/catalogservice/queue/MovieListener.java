@@ -1,6 +1,5 @@
 package com.dh.catalogservice.queue;
 
-import com.dh.catalogservice.Feign.IMovieClient;
 import com.dh.catalogservice.model.Movie;
 import com.dh.catalogservice.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,6 @@
 package com.dh.movieservice.service;
 
 import com.dh.movieservice.model.Movie;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
